@@ -106,7 +106,9 @@ public class SMSServiceBean {
 					}
 					logger.info( "Adding:" + id +", number:"+number );
 					
-					xml += "<dataValue dataElement=\""+id+"\" value=\""+number+"\" />\r\n";
+					if (!number.equals("")) {
+						xml += "<dataValue dataElement=\""+id+"\" value=\""+number+"\" />\r\n";
+					}
 				}
 				
 			}
