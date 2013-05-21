@@ -17,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hisp.dhis.smsin.beans.DHISAPI;
-import org.hisp.dhis.smsin.beans.SMSProvider;
 import org.hisp.dhis.smsin.beans.SMSServiceBean;
 
 @Controller
@@ -27,9 +26,7 @@ public class SMSIncomingController {
 	
     @Autowired
     private SMSServiceBean [] smsService; 
-    
-    @Autowired
-    private SMSProvider smsProvider; 
+   
     
 	@Autowired
     private DHISAPI dhisapi; 

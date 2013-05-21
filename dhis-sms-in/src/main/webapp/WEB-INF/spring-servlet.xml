@@ -26,6 +26,7 @@
 
 	<!-- These definitions are for specific forwarding rules. If you want one command forwarded to one server and another to another server, use these.  -->
 	<!-- You can have several SMSServiceBean -->
+	<!-- The below forwards for example http://localhost:8080/dhis-sms-in/sms?sender=1234&message=IDSR+abc to the URL http://apps.dhis2.org/mobile/sms/smsinput.action?sender=1234&message=IDSR+abc -->
 	<bean id="IDSR" class="org.hisp.dhis.smsin.beans.SMSServiceBean">
 		<property name="serviceName">
 			<value>IDSR</value>
@@ -41,12 +42,5 @@
 		<property name="password"><value>district</value></property>
 		<property name="dhisUrl"><value>http://apps.dhis2.org/dev/sms/smsinput.action</value></property>
 	</bean>
-	
-	<!--  This is for sending out SMS from this code. It isnt' used right now. -->
-	<bean id="smsprovider" class="org.hisp.dhis.smsin.beans.SMSProvider">
-		<property name="username"><value>dhis</value></property>
-		<property name="password"><value>d1!sm0?</value></property>
-		<property name="sender"><value>447797801306</value></property>
-	</bean>
-	
+
 </beans>

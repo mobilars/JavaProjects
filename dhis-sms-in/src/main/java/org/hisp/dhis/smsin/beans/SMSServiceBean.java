@@ -21,8 +21,6 @@ public class SMSServiceBean {
 //	@Autowired
 //	private SMSUsers smsusers;
 	
-	@Autowired
-    private SMSProvider smsProvider; 
 	
 	@Autowired
     private DHISAPI dhisapi; 
