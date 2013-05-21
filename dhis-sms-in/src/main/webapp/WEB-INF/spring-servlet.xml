@@ -19,109 +19,34 @@
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
 
-	<!-- Users -->
-
-	<bean id="users" class="org.hisp.dhis.smsin.beans.SMSUsers">
-		<property name="users">
-			<util:map map-class="java.util.HashMap">
-				<entry key="Mortality" value="DiszpKrYNg8" />
-				<entry key="M" value="DiszpKrYNg8" />
-				<entry key="default" value="DiszpKrYNg8" />
-				<entry key="4790733036" value="DiszpKrYNg8" />
-			</util:map>
-		</property>
-	</bean>
-
-	<!-- SMS Services -->
-
-	<bean id="Mortality" class="org.hisp.dhis.smsin.beans.SMSServiceBean">
-		<property name="serviceName">
-			<value>Mortality</value>
-		</property>
-		<property name="dataSet">
-			<value>pBOMPrpg1QX</value>
-		</property>
-		<property name="helpMessage"><value>Mortality A B C D E F G H I J K L M</value></property>
-	    <property name="username"><value>admin</value></property>
-		<property name="password"><value>district</value></property>
-		<property name="dhisUrl"><value>http://apps.dhis2.org/dev</value></property>
-		<property name="maps">
-			<util:map map-class="java.util.HashMap">
-				<entry key="A" value="FTRrcoaog83" />
-				<entry key="B" value="LjNlMTl9Nq9" />
-				<entry key="C" value="eY5ehpbEsB7" />
-				<entry key="D" value="Ix2HsbDMLea" />
-				<entry key="E" value="NpJtsQkMTm3" />
-				<entry key="F" value="f7n9E0hX8qk" />
-				<entry key="G" value="MSZuQ1mTsia" />
-				<entry key="H" value="lXolhoWewYH" />
-				<entry key="I" value="jVDAvs6kIAP" />
-				<entry key="J" value="Vp12ncSU1Av" />
-				<entry key="K" value="hM4ya5T2AqX" />
-				<entry key="L" value="Yy9NtNfwYZJ" />
-				<entry key="M" value="USBq0VHSkZq" />
-				</util:map>
-		</property>
-	</bean>
-
-	<bean id="M" class="org.hisp.dhis.smsin.beans.SMSServiceBean">
-		<property name="serviceName">
-			<value>M</value>
-		</property>
-		<property name="dataSet">
-			<value>pBOMPrpg1QX</value>
-		</property>
-		<property name="helpMessage"><value>M A B C D E F G H I J K L M</value></property>
-	    <property name="username"><value>admin</value></property>
-		<property name="password"><value>district</value></property>
-		<property name="dhisUrl"><value>http://apps.dhis2.org/demo</value></property>
-		<property name="maps">
-			<util:map map-class="java.util.HashMap">
-				<entry key="A" value="FTRrcoaog83" />
-				<entry key="B" value="LjNlMTl9Nq9" />
-				<entry key="C" value="eY5ehpbEsB7" />
-				<entry key="D" value="Ix2HsbDMLea" />
-				<entry key="E" value="NpJtsQkMTm3" />
-				<entry key="F" value="f7n9E0hX8qk" />
-				<entry key="G" value="MSZuQ1mTsia" />
-				<entry key="H" value="lXolhoWewYH" />
-				<entry key="I" value="jVDAvs6kIAP" />
-				<entry key="J" value="Vp12ncSU1Av" />
-				<entry key="K" value="hM4ya5T2AqX" />
-				<entry key="L" value="Yy9NtNfwYZJ" />
-				<entry key="M" value="USBq0VHSkZq" />
-				</util:map>
-		</property>
-	</bean>
+	<!-- BEWARE. This war file contains your DHIS username and password. -->
+	<!-- This is a potential security issue, both because people can read it in clear text AND because it forwards requests to DHIS, authenticating them.   -->
 	
+	<!-- This code takes your HTTP request, picks out the sender and message parameters from the GET url and forward these in an authenticated HTTP request to the server assigned below. -->
+
+	<!-- These definitions are for specific forwarding rules. If you want one command forwarded to one server and another to another server, use these.  -->
+	<!-- You can have several SMSServiceBean -->
 	<bean id="IDSR" class="org.hisp.dhis.smsin.beans.SMSServiceBean">
 		<property name="serviceName">
 			<value>IDSR</value>
 		</property>
-		<property name="dataSet">
-			<value>pBOMPrpg1QX</value>
-		</property>
-		<property name="helpMessage"><value>This command is not operational.</value></property>
 	    <property name="username"><value>admin</value></property>
 		<property name="password"><value>district</value></property>
-		<property name="dhisUrl"><value>http://apps.dhis2.org/dev</value></property>
-		<property name="maps">
-			<util:map map-class="java.util.HashMap">
-				<entry key="A" value="a1" />
-				<entry key="B" value="b2" />
-				<entry key="C" value="c3" />
-			</util:map>
-		</property>
+		<property name="dhisUrl"><value>http://apps.dhis2.org/mobile/sms/smsinput.action</value></property>
 	</bean>
 	
+	<!--  This is the default forwarding route with user and password. If you want per-command forwarding rules, see above -->
+	<bean id="dhisapi" class="org.hisp.dhis.smsin.beans.DHISAPI">
+		<property name="username"><value>admin</value></property>
+		<property name="password"><value>district</value></property>
+		<property name="dhisUrl"><value>http://apps.dhis2.org/dev/sms/smsinput.action</value></property>
+	</bean>
+	
+	<!--  This is for sending out SMS from this code. It isnt' used right now. -->
 	<bean id="smsprovider" class="org.hisp.dhis.smsin.beans.SMSProvider">
 		<property name="username"><value>dhis</value></property>
-		<property name="password"><value>d1!sm0b!</value></property>
+		<property name="password"><value>d1!sm0?</value></property>
 		<property name="sender"><value>447797801306</value></property>
 	</bean>
 	
-	<bean id="dhisapi" class="org.hisp.dhis.smsin.beans.DHISAPI">
-	</bean>
-	
-
 </beans>
