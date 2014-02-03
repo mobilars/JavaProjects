@@ -20,27 +20,33 @@
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
 
 	<!-- BEWARE. This war file contains your DHIS username and password. -->
-	<!-- This is a potential security issue, both because people can read it in clear text AND because it forwards requests to DHIS, authenticating them.   -->
+	<!-- This is a real security issue, both because people can read it in clear text AND because it forwards requests to DHIS, authenticating them.   -->
 	
 	<!-- This code takes your HTTP request, picks out the sender and message parameters from the GET url and forward these in an authenticated HTTP request to the server assigned below. -->
 
 	<!-- These definitions are for specific forwarding rules. If you want one command forwarded to one server and another to another server, use these.  -->
 	<!-- You can have several SMSServiceBean -->
 	<!-- The below forwards for example http://localhost:8080/dhis-sms-in/sms?sender=1234&message=IDSR+abc to the URL http://apps.dhis2.org/mobile/sms/smsinput.action?sender=1234&message=IDSR+abc -->
-	<bean id="IDSR" class="org.hisp.dhis.smsin.beans.SMSServiceBean">
+	<bean id="SomeCommand" class="org.hisp.dhis.smsin.beans.SMSServiceBean">
 		<property name="serviceName">
-			<value>IDSR</value>
+			<value>SomeCommand</value>
 		</property>
 	    <property name="username"><value>admin</value></property>
 		<property name="password"><value>district</value></property>
-		<property name="dhisUrl"><value>http://apps.dhis2.org/mobile/sms/smsinput.action</value></property>
+		<property name="dhisUrl"><value>http://apps.dhis2.org/dev/sms/smsinput.action</value></property>
 	</bean>
 	
 	<!--  This is the default forwarding route with user and password. If you want per-command forwarding rules, see above -->
 	<bean id="dhisapi" class="org.hisp.dhis.smsin.beans.DHISAPI">
+		<!--  
 		<property name="username"><value>admin</value></property>
 		<property name="password"><value>district</value></property>
-		<property name="dhisUrl"><value>http://apps.dhis2.org/dev/sms/smsinput.action</value></property>
+		<property name="dhisUrl"><value>http://apps.dhis2.org/dev/sms/smsinput.action</value></property>-->
+		
+		<property name="username"><value>smsgw</value></property>
+		<property name="password"><value>password</value></property>
+		
+		<property name="dhisUrl"><value>https://server-name/dhis/sms/smsinput.action</value></property>
 	</bean>
 
 </beans>
